@@ -40,4 +40,8 @@ async function reloadEvent(client, eventName) {
     client.on(eventName, require(`./events/${eventName}`).bind(null, client));
 }
 
+async function reloadClient(client) {
+   client.destroy().then(client => init(client, require('./config')));
+}
+
 init(new Client(), require("./config"));
